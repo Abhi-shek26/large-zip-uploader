@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Upload {
+  id           String   @id @default(uuid())
+  filename     String
+  totalSize    BigInt   // Using BigInt for >1GB support
+  totalChunks  Int
+  status       UploadStatus @default(UPLOADING)
+  finalHash    String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  chunks       Chunk[]
+}
+
+model Chunk {
+  id           Int      @id @default(autoincrement())
+  uploadId     String
+  index        Int
+  size         Int
+  status       ChunkStatus @default(PENDING)
+  receivedAt   DateTime?
+  
+  upload       Upload   @relation(fields: [uploadId], references: [id], onDelete: Cascade)
+
+  @@unique([uploadId, index]) // Prevent duplicate chunks for same index
+  @@index([uploadId])
+}
+
+enum UploadStatus {
+  UPLOADING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum ChunkStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}

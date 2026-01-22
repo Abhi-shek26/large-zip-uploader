@@ -1,0 +1,37 @@
+{"name": "large-zip-uploader-backend",
+  "version": "1.0.0",
+  "description": "Resilient backend for large zip uploads",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "nodemon src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "lint": "eslint src/**/*.ts",
+    "clean": "rimraf dist storage/temp/*"
+  },
+  "dependencies": {
+    "async-mutex": "^0.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "fs-extra": "^11.3.3",
+    "helmet": "^8.1.0",
+    "mysql2": "^3.16.1",
+    "yauzl-promise": "^4.0.0",
+    "zod": "^4.3.5"
+  },
+  "devDependencies": {
+    "@prisma/client": "^5.22.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^25.0.9",
+    "@types/yauzl-promise": "^4.0.1",
+    "nodemon": "^3.1.11",
+    "prisma": "^5.22.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

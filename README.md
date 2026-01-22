@@ -16,7 +16,36 @@ This project implements a production-grade file upload system capable of handlin
 - **Peeks** inside ZIP files without full extraction
 
 ---
+## 📹 Demo
 
+
+https://github.com/user-attachments/assets/11b2c782-295b-483b-a063-d6babf617631
+
+
+### Normal Upload Flow
+1. Select a 1GB+ ZIP file
+2. Watch global progress bar and chunk grid
+3. Observe 3 concurrent uploads (highlighted in grid)
+4. See live MB/s and ETA metrics
+5. Upon completion, view file contents extracted from ZIP
+
+### Network Disconnect Simulation
+1. Start uploading a large file
+2. Open browser DevTools → Network tab
+3. Switch to "Offline" mode mid-upload
+4. Observe chunks failing and retrying
+5. Re-enable network
+6. Watch upload resume from exact point of interruption
+
+### Server Crash Recovery
+1. Start upload
+2. Stop backend server (`Ctrl+C`)
+3. Restart backend (`npm run dev`)
+4. Refresh frontend page
+5. Click "Resume" button
+6. Upload continues from last successful chunk
+
+---
 ## ✨ Features
 
 ### Frontend (Smart Uploader)
@@ -445,32 +474,7 @@ cron.schedule('0 2 * * *', async () => {
 
 ---
 
-## 📹 Demo
 
-### Normal Upload Flow
-1. Select a 1GB+ ZIP file
-2. Watch global progress bar and chunk grid
-3. Observe 3 concurrent uploads (highlighted in grid)
-4. See live MB/s and ETA metrics
-5. Upon completion, view file contents extracted from ZIP
-
-### Network Disconnect Simulation
-1. Start uploading a large file
-2. Open browser DevTools → Network tab
-3. Switch to "Offline" mode mid-upload
-4. Observe chunks failing and retrying
-5. Re-enable network
-6. Watch upload resume from exact point of interruption
-
-### Server Crash Recovery
-1. Start upload
-2. Stop backend server (`Ctrl+C`)
-3. Restart backend (`npm run dev`)
-4. Refresh frontend page
-5. Click "Resume" button
-6. Upload continues from last successful chunk
-
----
 
 ## 📊 Performance Metrics
 
@@ -493,15 +497,6 @@ cron.schedule('0 2 * * *', async () => {
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
-
-
----
-
-## 👤 Author
-
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
 
 
 ---
